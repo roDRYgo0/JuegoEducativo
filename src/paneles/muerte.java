@@ -5,8 +5,10 @@ import javaClass.controlador;
 
 public class muerte extends javax.swing.JPanel {
 
-    public muerte() {
+    int suPo;
+    public muerte(int suPokemon) {
         initComponents();
+        suPo=suPokemon;
     }
 
     @SuppressWarnings("unchecked")
@@ -57,7 +59,7 @@ public class muerte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        preguntar ini = new preguntar();
+        preguntar ini = new preguntar(suPo);
         
         ini.setSize(988, 514);
         ini.setLocation(0,0);

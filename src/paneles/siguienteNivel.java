@@ -12,6 +12,9 @@ public class siguienteNivel extends javax.swing.JPanel {
         initComponents();
         niv=nive+1;
         nivel.setText(niv+"");
+        
+        juego.entrenador = juego.nuevoEntrenador();
+        
         controlador.resetear();
         juego.partido=0;
         juego.puntaje[0]=0;

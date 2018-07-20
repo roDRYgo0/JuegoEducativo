@@ -8,16 +8,17 @@ public class juego {
     private static String pregunta;
     private static String eleccion;
     
-    public static String tuNombre = "null";
+    public static String tuNombre;
     public static String nombreRival = "nulo";
     
-    public static String tiImagen;
+    public static String tuImagen = "1";
     public static String imagenRival;
     
-    public static int cantidadPreguntas = 31;
+    public static int cantidadPreguntas = 85;
     public static int noPreguntasUsadas = 0;
     
     public static ArrayList<Integer> preguntasUsadas = new ArrayList<>();
+    public static ArrayList<Integer> entrenadoresUsados = new ArrayList<>();
     
     public static boolean muerteSubita=false;
     public static preguntas pre = new preguntas();
@@ -25,7 +26,33 @@ public class juego {
     public static final int set = 3;
     public static int partido = 0;
     public static int nivel = 0;
-    public static int[] dificultad = {20,35,60,85};
+    public static int entrenador = 0;
+    public static int[] dificultad = {25,40,60,80};
+    
+    public static void resetear(){
+        noPreguntasUsadas = 0;
+        preguntasUsadas.clear();
+        entrenadoresUsados.clear();
+        muerteSubita=false;
+        puntaje[0]=0;
+        puntaje[1]=0;
+        partido = 0;
+        nivel = 0;
+        entrenador=0;
+        controlador.resetearJuego();
+    }
+    
+    public static int nuevoEntrenador(){
+        int num, p;
+        num = random(9);
+        p = entrenadoresUsados.indexOf(num);
+        while(p>=0){
+            num = random(9);
+            p = entrenadoresUsados.indexOf(num);
+        }
+        entrenadoresUsados.add(num);
+        return num;
+    }
     
     public static void usarPreguntas(){
         noPreguntasUsadas=0;
@@ -48,6 +75,10 @@ public class juego {
     
     public static int random(){
         return (int) (Math.random() * juego.cantidadPreguntas);
+    }
+    
+    public static int random(int n){
+        return (int) (Math.random() * n)+1;
     }
 
     public static boolean comprobar(){

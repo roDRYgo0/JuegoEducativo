@@ -427,7 +427,7 @@ public class preguntas {
         respuestas [49][4] = "9";
 
         preguntas [50][0] = "¿De qué otra lengua proviene el español?";
-        preguntas [50][1] = "4";
+        preguntas [50][1] = "2";
 
         respuestas [50][1] = "Portugués";
         respuestas [50][2] = "Latín";
@@ -458,7 +458,7 @@ public class preguntas {
         respuestas [53][3] = "6";
         respuestas [53][4] = "8";
 
-        preguntas [54][0] = "¿Cómo se llama el proceso por el cuál las plantas producen su propio alimento?";
+        preguntas [54][0] = "¿Cómo se alimentan las plantas?";
         preguntas [54][1] = "1";
 
         respuestas [54][1] = "Fotosíntesis";
@@ -577,6 +577,14 @@ public class preguntas {
         respuestas [68][2] = "Basquetbol";
         respuestas [68][3] = "Fútbol";
         respuestas [68][4] = "Tenis";
+        
+        preguntas [69][0] = "En que lenguaje esta hecho este juego";
+        preguntas [69][1] = "3";
+
+        respuestas [69][1] = "Java";
+        respuestas [69][2] = "C#";
+        respuestas [69][3] = "Español";
+        respuestas [69][4] = "SQL Server";
 
         preguntas [70][0] = "¿En qué año comenzó la segunda guerra mundial?";
         preguntas [70][1] = "2";
@@ -627,7 +635,7 @@ public class preguntas {
         respuestas [75][4] = "El 1";
 
         preguntas [76][0] = "¿Cuál es el único mamífero capaz de volar?";
-        preguntas [76][1] = "3";
+        preguntas [76][1] = "4";
 
         respuestas [76][1] = "Koala";
         respuestas [76][2] = "Caballo";
@@ -698,10 +706,6 @@ public class preguntas {
         respuestas [84][3] = "2 años";
         respuestas [84][4] = "3 años";
 
-
-
-        
-        
         preguntas [85][0] = "Not found";
         preguntas [85][1] = "3";
         

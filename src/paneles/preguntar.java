@@ -6,22 +6,46 @@ import javaClass.*;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public final class preguntar extends javax.swing.JPanel {
 
     int[] ataques;
     int moderador = 0;
+    int suPo;
     preguntas pre = new preguntas();
     
     public preguntar() {
         initComponents();
         ataques = new int[4];
         juego.partido++;
-        
+        suPo = random()+1;
+        System.out.println(suPo+" esta mamada es");
+        lblNivel.setText((juego.nivel+1)+"");
+        loadData(suPo,suPokemon);
+        loadAvatar(juego.tuImagen);
+        loadAvatar(juego.entrenador+"", avatar1);
         seleccionar();
         validar();
         asignar();
     }
+    
+    public preguntar(int suPoke) {
+        initComponents();
+        ataques = new int[4];
+        juego.partido++;
+        lblNivel.setText((juego.nivel+1)+"");
+        suPo=suPoke;
+        loadSuPokemon(suPoke);
+        loadAvatar(juego.tuImagen);
+        loadAvatar(juego.entrenador+"", avatar1);
+        seleccionar();
+        validar();
+        asignar();
+    }
+
+    
+    
     
     void asignar(){
         btnAtaque1.setText(pre.preguntas[ataques[0]][0]);
@@ -92,11 +116,11 @@ public final class preguntar extends javax.swing.JPanel {
     }
     
     public int random(){
-        return (int) (Math.random() * juego.cantidadPreguntas);
+        return (int) (Math.random() * juego.cantidadPreguntas)+1;
     }
     
     void siguiente(int pre){
-        rival riv = new rival(pre);
+        rival riv = new rival(pre, suPo);
         
         riv.setSize(988, 514);
         riv.setLocation(0,0);
@@ -107,8 +131,18 @@ public final class preguntar extends javax.swing.JPanel {
         controlador.pane.repaint();
     }
     
+    //<editor-fold defaultstate="collapsed" desc="load">
+    public void loadSuPokemon(int img)
+    {
+        System.out.println("La imagen "+(img+1));
+        ImageIcon original = new ImageIcon(getClass().getResource("/imagenes/"+(img)+".png"));
+        Icon icono = new ImageIcon(original.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH));
+        suPokemon.setIcon(icono);
+    }
+    
     public void loadData(int img, JButton boton)
     {
+        System.out.println("La imagen "+(img));
         if(img != 85){
             ImageIcon original = new ImageIcon(getClass().getResource("/imagenes/"+(img+1)+".png"));
             Icon icono = new ImageIcon(original.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
@@ -116,12 +150,44 @@ public final class preguntar extends javax.swing.JPanel {
         }
     }
 
+    public void loadData(int img, JLabel boton)
+    {
+        System.out.println("La imagen "+(img));
+        if(img != 85){
+            ImageIcon original = new ImageIcon(getClass().getResource("/imagenes/"+(img)+".png"));
+            Icon icono = new ImageIcon(original.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH));
+            boton.setIcon(icono);
+        }
+    }
+    
+    public void loadAvatar(String img)
+    {
+        System.out.println("La imagen mala "+(img));
+        ImageIcon original = new ImageIcon(getClass().getResource("/entrenadores/"+(img)+".png"));
+        Icon icono = new ImageIcon(original.getImage().getScaledInstance(65, 121, Image.SCALE_SMOOTH));
+        avatar.setIcon(icono);
+        
+        tuNombre.setText(juego.tuNombre);
+    }
+    
+    public void loadAvatar(String img, JLabel lb)
+    {
+        System.out.println("La imagen "+(img+1));
+        ImageIcon original = new ImageIcon(getClass().getResource("/entrenadores/"+(img)+".png"));
+        Icon icono = new ImageIcon(original.getImage().getScaledInstance(65, 121, Image.SCALE_SMOOTH));
+        lb.setIcon(icono);
+    }
+    
+//</editor-fold>
+    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        avatar1 = new javax.swing.JLabel();
+        suPokemon = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnAtaque2 = new javax.swing.JButton();
         btnAtaque1 = new javax.swing.JButton();
@@ -129,6 +195,10 @@ public final class preguntar extends javax.swing.JPanel {
         btnAtaque4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblNivel = new javax.swing.JLabel();
+        avatar = new javax.swing.JLabel();
+        tuNombre = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setMaximumSize(new java.awt.Dimension(988, 514));
@@ -136,29 +206,32 @@ public final class preguntar extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(988, 514));
 
         jPanel1.setBackground(new java.awt.Color(148, 255, 243));
+        jPanel1.setMaximumSize(new java.awt.Dimension(725, 220));
+        jPanel1.setMinimumSize(new java.awt.Dimension(725, 220));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        suPokemon.setMaximumSize(new java.awt.Dimension(75, 75));
+        suPokemon.setMinimumSize(new java.awt.Dimension(75, 75));
+        suPokemon.setPreferredSize(new java.awt.Dimension(75, 75));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(404, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(248, 248, 248))
+                .addContainerGap(527, Short.MAX_VALUE)
+                .addComponent(suPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(avatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(77, 77, 77))
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(avatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(suPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
         );
 
         jPanel2.setBackground(new java.awt.Color(254, 254, 254));
@@ -244,6 +317,18 @@ public final class preguntar extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(244, 25, 13));
         jLabel2.setText("para atacar.");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        jLabel3.setText("Nivel:");
+
+        lblNivel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblNivel.setForeground(new java.awt.Color(0, 51, 255));
+        lblNivel.setText("-");
+
+        tuNombre.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        tuNombre.setForeground(new java.awt.Color(255, 51, 255));
+        tuNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tuNombre.setText("meme");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,9 +339,22 @@ public final class preguntar extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(0, 22, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblNivel)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(tuNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -264,12 +362,22 @@ public final class preguntar extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tuNombre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(lblNivel))
+                                .addGap(33, 33, 33))
+                            .addComponent(avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(48, Short.MAX_VALUE))
@@ -281,12 +389,6 @@ public final class preguntar extends javax.swing.JPanel {
         juego.noPreguntasUsadas++;
         juego.preguntasUsadas.add(ataques[1]);
     }//GEN-LAST:event_btnAtaque2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        seleccionar();
-        asignar();
-        System.out.println(ataques[0]+" "+ataques[1]+" "+ataques[2]+" "+ataques[3]);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAtaque4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtaque4ActionPerformed
         siguiente(ataques[3]);
@@ -308,14 +410,19 @@ public final class preguntar extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel avatar;
+    private javax.swing.JLabel avatar1;
     private javax.swing.JButton btnAtaque1;
     private javax.swing.JButton btnAtaque2;
     private javax.swing.JButton btnAtaque3;
     private javax.swing.JButton btnAtaque4;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblNivel;
+    private javax.swing.JLabel suPokemon;
+    private javax.swing.JLabel tuNombre;
     // End of variables declaration//GEN-END:variables
 }

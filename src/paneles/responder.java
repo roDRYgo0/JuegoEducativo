@@ -10,20 +10,24 @@ import javax.swing.JLabel;
 
 public final class responder extends javax.swing.JPanel {
    
-    int step, punto;
+    int step, punto, suPoke;
     
     int[] meme = new int[3];
 
     boolean respuesta, elegido;
     
-    public responder() {
+    public responder(int miPok) {
         initComponents();   
         respuesta = false;
+        lblNivel.setText((juego.nivel+1)+"");
         elegido = true;
         estado.setVisible(false);
+        loadMiPokemon(miPok);
+        loadAvatar(juego.tuImagen);
+        loadAvatar(juego.entrenador+"", avatar1);
         step=0;
-        
-        cargar();
+        suPoke=cargar();
+        loadSuPokemon(suPoke);
     }
 
     @SuppressWarnings("unchecked")
@@ -38,11 +42,18 @@ public final class responder extends javax.swing.JPanel {
         btnResp4 = new javax.swing.JButton();
         btnResp2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        avatar1 = new javax.swing.JLabel();
+        miPokemon = new javax.swing.JLabel();
+        suPokemon = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         siguiente = new javax.swing.JButton();
         estado = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        avatar = new javax.swing.JLabel();
+        tuNombre = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblNivel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setMaximumSize(new java.awt.Dimension(988, 514));
@@ -149,34 +160,49 @@ public final class responder extends javax.swing.JPanel {
         );
 
         jPanel1.setBackground(new java.awt.Color(148, 255, 243));
+        jPanel1.setMaximumSize(new java.awt.Dimension(725, 220));
+        jPanel1.setMinimumSize(new java.awt.Dimension(725, 220));
+        jPanel1.setPreferredSize(new java.awt.Dimension(725, 220));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        miPokemon.setMaximumSize(new java.awt.Dimension(75, 75));
+        miPokemon.setMinimumSize(new java.awt.Dimension(75, 75));
+        miPokemon.setPreferredSize(new java.awt.Dimension(75, 75));
+
+        suPokemon.setMaximumSize(new java.awt.Dimension(75, 75));
+        suPokemon.setMinimumSize(new java.awt.Dimension(75, 75));
+        suPokemon.setPreferredSize(new java.awt.Dimension(75, 75));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(390, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(248, 248, 248))
+                .addGap(50, 50, 50)
+                .addComponent(miPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
+                .addComponent(suPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(avatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(77, 77, 77))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(miPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(suPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(avatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48))))
         );
 
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(65, 235, 57));
-        jLabel1.setText("Defiendete");
+        jLabel1.setText("ataque.");
 
         siguiente.setText("Siguiente");
         siguiente.setEnabled(false);
@@ -193,14 +219,45 @@ public final class responder extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Cantarell", 1, 20)); // NOI18N
         jLabel2.setText("La respuesta es: ");
 
+        jLabel3.setFont(new java.awt.Font("Cantarell", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(65, 235, 57));
+        jLabel3.setText("Defiendete, evita el");
+
+        tuNombre.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        tuNombre.setForeground(new java.awt.Color(255, 51, 255));
+        tuNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tuNombre.setText("meme");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        jLabel5.setText("Nivel:");
+
+        lblNivel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblNivel.setForeground(new java.awt.Color(0, 51, 255));
+        lblNivel.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1))
+                        .addGap(0, 22, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNivel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(tuNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -212,7 +269,7 @@ public final class responder extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(estado))
-                        .addGap(0, 45, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,10 +279,23 @@ public final class responder extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(33, 33, 33)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tuNombre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(lblNivel))
+                                .addGap(33, 33, 33))
+                            .addComponent(avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -235,7 +305,7 @@ public final class responder extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -275,10 +345,6 @@ public final class responder extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnResp4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controlador.resetearJuego();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteActionPerformed
         switch(step){
             case 0:
@@ -308,7 +374,6 @@ public final class responder extends javax.swing.JPanel {
                 
                 switch (juego.ganador(punto)) {
                     case 0:
-                        
                         //<editor-fold defaultstate="collapsed" desc="Victoria">
                         juego.nivel++;
                         if(juego.nivel==4)
@@ -333,10 +398,8 @@ public final class responder extends javax.swing.JPanel {
                             controlador.pane.repaint();
                         }
                         //</editor-fold>
-                        
                         break;
                     case 1:
-                        
                         //<editor-fold defaultstate="collapsed" desc="derrota">
                         juego.nivel++;
                         if(juego.nivel==4)
@@ -361,13 +424,11 @@ public final class responder extends javax.swing.JPanel {
                             controlador.pane.repaint();
                         }
                         //</editor-fold>
-                        
                         break;
                     case -2:
-                        
                         //<editor-fold defaultstate="collapsed" desc="Muerte subita">
                         if(juego.muerteSubita==false){
-                            muerte muer = new muerte();
+                            muerte muer = new muerte(suPoke);
         
                             muer.setSize(988, 514);
                             muer.setLocation(0,0);
@@ -378,7 +439,7 @@ public final class responder extends javax.swing.JPanel {
                             controlador.pane.repaint();
                             juego.muerteSubita=true;
                         }else{
-                            preguntar ini = new preguntar();
+                            preguntar ini = new preguntar(suPoke);
         
                             ini.setSize(988, 514);
                             ini.setLocation(0,0);
@@ -389,10 +450,9 @@ public final class responder extends javax.swing.JPanel {
                             controlador.pane.repaint(); 
                         }
                         //</editor-fold>
-                        
                         break;
                     default:
-                        preguntar ini = new preguntar();
+                        preguntar ini = new preguntar(suPoke);
         
                         ini.setSize(988, 514);
                         ini.setLocation(0,0);
@@ -412,14 +472,54 @@ public final class responder extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_siguienteActionPerformed
 
-    public void loadData(int img, JLabel boton)
+    
+    //<editor-fold defaultstate="collapsed" desc="load">
+    public void loadPre(int img)
     {
+        System.out.println("La imagen "+(img));
         if(img != 85){
-            ImageIcon original = new ImageIcon(getClass().getResource("/imagenes/"+(img+1)+".png"));
+            ImageIcon original = new ImageIcon(getClass().getResource("/imagenes/"+(img)+".png"));
             Icon icono = new ImageIcon(original.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
-            boton.setIcon(icono);
+            lblPregunta.setIcon(icono);
         }
     }
+    
+    public void loadMiPokemon(int img)
+    {
+        System.out.println("La imagen "+(img+1));
+        ImageIcon original = new ImageIcon(getClass().getResource("/imagenes/"+(img)+".png"));
+        Icon icono = new ImageIcon(original.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH));
+        miPokemon.setIcon(icono);
+    }
+    
+    public void loadSuPokemon(int img)
+    {
+        System.out.println("La imagen "+(img+1));
+        ImageIcon original = new ImageIcon(getClass().getResource("/imagenes/"+(img)+".png"));
+        Icon icono = new ImageIcon(original.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH));
+        suPokemon.setIcon(icono);
+    }
+    
+    public void loadAvatar(String img)
+    {
+        System.out.println("La imagen "+(img+1));
+        ImageIcon original = new ImageIcon(getClass().getResource("/entrenadores/"+(img)+".png"));
+        Icon icono = new ImageIcon(original.getImage().getScaledInstance(65, 121, Image.SCALE_SMOOTH));
+        avatar.setIcon(icono);
+        
+        tuNombre.setText(juego.tuNombre);
+
+    }
+    
+    public void loadAvatar(String img, JLabel lb)
+    {
+        System.out.println("La imagen "+(img+1));
+        ImageIcon original = new ImageIcon(getClass().getResource("/entrenadores/"+(img)+".png"));
+        Icon icono = new ImageIcon(original.getImage().getScaledInstance(65, 121, Image.SCALE_SMOOTH));
+        lb.setIcon(icono);
+    }
+    
+//</editor-fold>
     
     void validar(int fe){
         if(fe==85){
@@ -476,7 +576,7 @@ public final class responder extends javax.swing.JPanel {
         }
     }
     
-    public void cargar(){
+    public int cargar(){
         int pregunta = juego.dispPreguntas();
         System.out.println(pregunta);
         juego.noPreguntasUsadas++;
@@ -487,8 +587,9 @@ public final class responder extends javax.swing.JPanel {
         btnResp3.setText(juego.pre.respuestas[pregunta][3]);
         btnResp4.setText(juego.pre.respuestas[pregunta][4]);
         juego.setCorrecta(juego.pre.preguntas[pregunta][1]);
-        loadData(pregunta,lblPregunta);
+        loadPre(pregunta);
         validar(pregunta);
+        return pregunta;
     }
     
     public int random(){
@@ -505,18 +606,25 @@ public final class responder extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel avatar;
+    private javax.swing.JLabel avatar1;
     private javax.swing.JButton btnResp1;
     private javax.swing.JButton btnResp2;
     private javax.swing.JButton btnResp3;
     private javax.swing.JButton btnResp4;
     private javax.swing.JLabel estado;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblNivel;
     private javax.swing.JLabel lblPregunta;
+    private javax.swing.JLabel miPokemon;
     private javax.swing.JButton siguiente;
+    private javax.swing.JLabel suPokemon;
+    private javax.swing.JLabel tuNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -69,10 +69,7 @@ public class derrota extends javax.swing.JPanel {
         controlador.pane.revalidate();
         controlador.pane.repaint();
         
-        controlador.resetear();
-        juego.partido=0;
-        juego.puntaje[0]=0;
-        juego.puntaje[1]=0;
+        juego.resetear();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

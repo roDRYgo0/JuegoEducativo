@@ -3,6 +3,7 @@ package paneles;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javaClass.controlador;
+import javaClass.juego;
 
 public class resultado extends javax.swing.JPanel {
 
@@ -91,6 +92,8 @@ public class resultado extends javax.swing.JPanel {
         controlador.pane.add(ini,BorderLayout.CENTER);
         controlador.pane.revalidate();
         controlador.pane.repaint();
+        
+        juego.resetear();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
