@@ -28,8 +28,8 @@ public class siguienteNivel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(254, 254, 254));
-        setMaximumSize(new java.awt.Dimension(906, 500));
-        setMinimumSize(new java.awt.Dimension(906, 500));
+        setMaximumSize(new java.awt.Dimension(988, 514));
+        setMinimumSize(new java.awt.Dimension(988, 514));
         setRequestFocusEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 36)); // NOI18N
@@ -57,7 +57,7 @@ public class siguienteNivel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nivel)
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -66,7 +66,7 @@ public class siguienteNivel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(194, Short.MAX_VALUE)
+                .addContainerGap(208, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(nivel))
@@ -79,7 +79,7 @@ public class siguienteNivel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         preguntar ini = new preguntar();
         
-        ini.setSize(906, 500);
+        ini.setSize(988, 514);
         ini.setLocation(0,0);
         
         controlador.pane.removeAll();

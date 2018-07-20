@@ -23,8 +23,8 @@ public class resultado extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(254, 254, 254));
-        setMaximumSize(new java.awt.Dimension(906, 500));
-        setMinimumSize(new java.awt.Dimension(906, 500));
+        setMaximumSize(new java.awt.Dimension(988, 514));
+        setMinimumSize(new java.awt.Dimension(988, 514));
 
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 36)); // NOI18N
         jLabel1.setText("Felicidades a:");
@@ -60,7 +60,7 @@ public class resultado extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(result)
                             .addComponent(nombre))))
-                .addContainerGap(338, Short.MAX_VALUE))
+                .addContainerGap(407, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -77,14 +77,14 @@ public class resultado extends javax.swing.JPanel {
                 .addComponent(result)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         inicio ini = new inicio();
         
-        ini.setSize(906, 500);
+        ini.setSize(988, 514);
         ini.setLocation(0,0);
         
         controlador.pane.removeAll();

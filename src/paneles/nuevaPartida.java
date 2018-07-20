@@ -18,9 +18,7 @@ public class nuevaPartida extends javax.swing.JPanel {
         loadData("entF1",tuImagen2);
         loadData("entM2",imagenRival2);
         loadData("entF2",imagenRival2);
-        
-        juego.tuNombre="entM1";
-        juego.nombreRival="entM2";
+
     }
 
     @SuppressWarnings("unchecked")
@@ -38,8 +36,9 @@ public class nuevaPartida extends javax.swing.JPanel {
         imagenRival1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
-        setMaximumSize(new java.awt.Dimension(906, 500));
-        setMinimumSize(new java.awt.Dimension(906, 500));
+        setMaximumSize(new java.awt.Dimension(988, 514));
+        setMinimumSize(new java.awt.Dimension(988, 514));
+        setPreferredSize(new java.awt.Dimension(988, 514));
 
         jLabel1.setFont(new java.awt.Font("Cantarell", 1, 36)); // NOI18N
         jLabel1.setText("Tu nombre:");
@@ -134,7 +133,7 @@ public class nuevaPartida extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(200, 200, 200)
                                     .addComponent(tuNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tuImagen1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(imagenRival1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,7 +173,7 @@ public class nuevaPartida extends javax.swing.JPanel {
         
         preguntar ini = new preguntar();
         
-        ini.setSize(906, 500);
+        ini.setSize(988, 514);
         ini.setLocation(0,0);
         
         controlador.pane.removeAll();

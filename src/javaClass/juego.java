@@ -34,7 +34,7 @@ public class juego {
     }
     
     public static int dispPreguntas(){
-        int num = 74, p = 0;
+        int num = 85, p = 0;
         if(noPreguntasUsadas<cantidadPreguntas){
             num = random();
             p = preguntasUsadas.indexOf(num);
